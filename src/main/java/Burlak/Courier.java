@@ -24,6 +24,8 @@ public class Courier {
         this.schedule = schedule;
     }
 
+
+
     public String getFio() {
         return fio;
     }
