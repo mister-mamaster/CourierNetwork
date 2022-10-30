@@ -9,17 +9,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class InputDataCourier {
-    private final InputStream input = getClass().getClassLoader().getResourceAsStream("Couriers");
-
-    public InputStream getInput() {
-        return input;
-    }
-
-    public List<Courier> getData(Schedule schedule) throws IOException, URISyntaxException {
+    public static List<Courier> getData(Schedule schedule) throws IOException, URISyntaxException {
         List<Courier> couriers = new ArrayList<>();
 
         try {
-            File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource("Couriers.txt")).toURI());
+            File file = new File(Objects.requireNonNull(InputDataCourier.class.getClassLoader().getResource("Couriers.txt")).toURI());
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
 

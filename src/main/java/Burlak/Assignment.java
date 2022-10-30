@@ -63,10 +63,8 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return "Assignment{" +
-                this.courier.getFio() + ", " +
+        return this.courier.getFio() + ", " +
                 this.order.getId() + ", " +
-                this.interval.duration() +
-                '}';
+                this.interval.duration();
     }
 }

@@ -12,11 +12,11 @@ import java.util.Objects;
 
 
 public class InputDataOrder {
-    public List<Order> getData() throws IOException, URISyntaxException {
+    public static List<Order> getData() throws IOException, URISyntaxException {
         List<Order> orders = new ArrayList<>();
 
         try {
-            File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource("Orders.txt")).toURI());
+            File file = new File(Objects.requireNonNull(InputDataOrder.class.getClassLoader().getResource("Orders.txt")).toURI());
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
 
