@@ -20,6 +20,14 @@ public class Order {
         this.finishPoint = finishPoint;
         this.exInter = exInter;
         this.assignment = assignment;
+        assignment.setOrder(this);
+    }
+
+    public Order(int id, Point startPoint, Point finishPoint, Interval exInter) {
+        this.id = id;
+        this.startPoint = startPoint;
+        this.finishPoint = finishPoint;
+        this.exInter = exInter;
     }
 
     public int getId() {
@@ -62,5 +70,18 @@ public class Order {
         this.assignment = assignment;
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", startPoint=" + startPoint +
+                ", finishPoint=" + finishPoint +
+                ", exInter=" + exInter +
+                ", assignment=" + assignment +
+                '}';
+    }
+    
+    public boolean haveAssignment(){
+        return this.assignment != null;
+    }
 }
