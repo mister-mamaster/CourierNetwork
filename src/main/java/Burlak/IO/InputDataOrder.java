@@ -12,13 +12,10 @@ import java.util.Objects;
 
 
 public class InputDataOrder {
-    public static List<Order> getData() throws IOException, URISyntaxException {
+    public static List<Order> getData(Reader in) throws IOException, URISyntaxException {
         List<Order> orders = new ArrayList<>();
 
-        try {
-            File file = new File(Objects.requireNonNull(InputDataOrder.class.getClassLoader().getResource("Orders.txt")).toURI());
-            FileReader fr = new FileReader(file);
-            BufferedReader reader = new BufferedReader(fr);
+            BufferedReader reader = new BufferedReader(in);
 
             String str = reader.readLine();
 
@@ -29,12 +26,6 @@ public class InputDataOrder {
                 orders.add(new Order(Integer.parseInt(strings[0]), new Point(Double.parseDouble(strings[1]), Double.parseDouble(strings[2])), new Point(Double.parseDouble(strings[3]), Double.parseDouble(strings[4])), new Interval(Integer.parseInt(strings[5]), Integer.parseInt(strings[6]))));
                 str = reader.readLine();
             }
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-
 
         return orders;
     }

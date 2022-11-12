@@ -1,54 +1,31 @@
 package Burlak.IO;
 
+import Burlak.Assignment;
 import Burlak.Schedule;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.attribute.FileAttribute;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class OutputDataSchedule {
 
-    public void writeSchedule(Schedule schedule) throws URISyntaxException, IOException {
-        File file = new File("./src/main/resources/Schedule.txt");
-        if(!file.exists())
-        file.createNewFile();
+    public void writeSchedule(List<Assignment> assignments, Writer out) throws URISyntaxException, IOException {
 
-        FileWriter fw = new FileWriter(file);
-        BufferedWriter writer = new BufferedWriter(fw);
+        BufferedWriter writer = new BufferedWriter(out);
 
-        StringBuilder str = new StringBuilder(schedule.toString());
+        StringBuilder str = new StringBuilder();
 
-        str.delete(0, 10);
-        str.deleteCharAt(str.length() - 1);
-
-        String[] strings = Arrays.toString((str.toString().split("\n"))).split(", ");
-
-        strings[0] = new StringBuilder(strings[0]).deleteCharAt(0).toString();
-
-
-        for(int i = 0; i * 3 < strings.length; i++){
-            int j = 0, count = 0;
-            for(; j < 3; j++){
-                if (i * 3 + j < strings.length - 1) {
-                    if (!strings[i * 3 + j].equals("")) {
-                        writer.write(strings[i * 3 + j] + " ");
-                        count++;
-                    }
-                }
-                if(count == 3) writer.write("\n");
-            }
-            count = 0;
-            j = 0;
+        for(Assignment assignment: assignments){
+            str.append(String.valueOf(assignment.getOrder().getId()) + " " + String.valueOf(assignment.getCourier().getId()) + " " + String.valueOf(assignment.getCourier().getStartPoint().getX()) + " " + String.valueOf(assignment.getCourier().getStartPoint().getY()) + " " + String.valueOf(assignment.getInterval().getBegin()) + " " + String.valueOf(assignment.getInterval().getEnd()) + String.valueOf(assignment.getLength()) + "\n");
         }
 
+        writer.write(str.toString());
+
         writer.close();
-        fw.close();
     }
 
 }
