@@ -16,12 +16,11 @@ public class Courier {
         schedule = new Schedule();
     }
 
-    public Courier(String fio, int id, double speed, Point startPoint, Schedule schedule) {
+    public Courier(String fio, int id, double speed, Point startPoint) {
         this.fio = fio;
         this.id = id;
         this.speed = speed;
         this.startPoint = startPoint;
-        this.schedule = schedule;
     }
 
 

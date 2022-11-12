@@ -11,6 +11,7 @@ public class Schedule {
 
     public Schedule(List<Assignment> assignments) {
         this.assignments = assignments;
+        assignments.get(0).getCourier().setSchedule(this);
     }
 
     public List<Assignment> getAssignments() {
